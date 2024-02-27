@@ -6,6 +6,9 @@ class Request
 {
     protected $method;
     protected $url;
+    /**
+     * Class name of the response object
+     */
     protected $response;
 
     public function response($data)

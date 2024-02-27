@@ -5,7 +5,7 @@ namespace Conkal\YOKAS;
 class OgrenciEkleGuncelleRequest extends Request
 {
     protected $method = "POST";
-    protected $url = "/OgrenciKabulleri/ogrkabulekleguncelle";
+    protected $url = "/Ogrenci/ogrenciekleguncelle";
     protected $response = OgrenciEkleGuncelleResponse::class;
 
     public $universiteid = "";

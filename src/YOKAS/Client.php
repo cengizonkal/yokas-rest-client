@@ -27,10 +27,7 @@ class Client
         $data = $this->client->request($request->method(), $request->url(), [
             'form_params' => $request->data()
         ]);
-
-        $responseClass = $request->response($data->getBody());
-
-
+        return  $request->response($data->getBody());
 
     }
 
