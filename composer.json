@@ -1,0 +1,22 @@
+{
+  "name": "conkal/yokas-rest-client",
+  "description": "A library to consume YOKAS REST API",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Conkal\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "cengiz",
+      "email": "conkal@ciu.edu.tr"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "guzzlehttp/guzzle": "^6.5",
+    "ext-json": "*"
+  }
+}
