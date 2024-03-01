@@ -28,7 +28,7 @@ class ClientTest extends TestCase
         $request->pasaportno = "215045";
         $request->uyruk = "1";
         $request->uyrugu = "XCT";
-        $request->aktifdonemno = "";
+        $request->aktifdonemno = "1";
         $request->anneadi = "Anne";
         $request->ayrilmanedeni = "";
         $request->ayrilmatarihi = "";
