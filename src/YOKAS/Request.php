@@ -42,7 +42,7 @@ class Request
     {
         $array = [];
         foreach ($this as $key => $value) {
-            if (!in_array($key, ['method', 'url', 'response'])) {
+            if (!in_array($key, ['method', 'uri'])) {
                 $array[$key] = $value;
             }
         }

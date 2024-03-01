@@ -8,7 +8,15 @@ class OgrenciEkleGuncelleRequest extends Request
     protected $method = "POST";
 
     public $universiteid = "";
+    /**
+     * @var string
+     * 2023-24
+     */
     public $kayityili = "";
+    /**
+     * @var string
+     * 1 Güz, 2 Bahar, 3 Yaz
+     */
     public $kayitdonemi = "";
     public $ogrencino = "";
     public $kimlikno = "";

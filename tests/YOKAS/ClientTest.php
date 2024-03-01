@@ -21,8 +21,8 @@ class ClientTest extends TestCase
         $client = new Client($host, $username, $password, $id);
         $request = new OgrenciEkleGuncelleRequest();
         $request->universiteid= $id;
-        $request->kayityili = "2024";
-        $request->kayitdonemi = "Güz";
+        $request->kayityili = "2023-24";
+        $request->kayitdonemi = "2";
         $request->ogrencino = "22990000";
         $request->kimlikno = "215045";
         $request->pasaportno = "215045";
@@ -60,10 +60,8 @@ class ClientTest extends TestCase
         $request->telefonno = "905335555555";
         $request->email = "22990000@ciu.edu.tr";
 
-        $response = $client->execute($request);
 
-        //print message
-        $this->log->info($response->message());
+        $response = $client->execute($request);
 
         $this->assertTrue($response->isSuccessful());
 
