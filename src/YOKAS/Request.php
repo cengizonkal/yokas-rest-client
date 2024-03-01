@@ -4,32 +4,38 @@ namespace Conkal\YOKAS;
 
 class Request
 {
-    protected $method;
-    protected $url;
+
     /**
      * Class name of the response object
      */
     protected $response;
+    protected $uri;
+    protected $method;
 
     public function response($data)
     {
         return new $this->response($data);
     }
 
+    public function uri()
+    {
+        return $this->uri;
+    }
 
     public function method()
     {
         return $this->method;
     }
 
-    public function url()
-    {
-        return $this->url;
-    }
 
     public function data()
     {
         return $this->toArray();
+    }
+
+    public function json()
+    {
+        return json_encode($this->data());
     }
 
     protected function toArray()

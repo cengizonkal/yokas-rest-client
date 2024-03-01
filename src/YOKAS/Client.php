@@ -9,26 +9,26 @@ class Client
     protected $password;
     protected $username;
     private $client;
+    private $id;
 
-    public function __construct($host, $username, $password)
+    public function __construct($host, $username, $password, $id)
     {
         $this->host = $host;
         $this->username = $username;
         $this->password = $password;
+        $this->id = $id;
         $this->client = new \GuzzleHttp\Client([
             'base_uri' => $this->host,
-            'auth' => [$this->username, $this->password]
+            'auth' => [$this->id, $this->password]
         ]);
     }
-
     public function execute(Request $request)
     {
-        //execute the request and create a response object based upon the response
-        $data = $this->client->request($request->method(), $request->url(), [
-            'form_params' => $request->data()
+        $data = $this->client->request($request->method(), $request->uri(), [
+            'json' => $request->data()
         ]);
-        return  $request->response($data->getBody());
-
+        ExceptionFactory::check($data->getBody());
+        return new Response($data->getBody());
     }
 
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpunit colors="true" backupGlobals="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true">
+    <php>
+        <env name="YOKAS_USERNAME" value="username"/>
+        <env name="YOKAS_PASSWORD" value="password"/>
+        <env name="YOKAS_ID" value="1"/>
+        <env name="YOKAS_REST_URL" value="https://yokasRestApi.mebnet.net/api"/>
+    </php>
+</phpunit>

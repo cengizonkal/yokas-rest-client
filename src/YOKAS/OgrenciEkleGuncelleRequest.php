@@ -4,9 +4,8 @@ namespace Conkal\YOKAS;
 
 class OgrenciEkleGuncelleRequest extends Request
 {
+    protected $uri = "api/ogrenci/ogrenciekleguncelle";
     protected $method = "POST";
-    protected $url = "/Ogrenci/ogrenciekleguncelle";
-    protected $response = OgrenciEkleGuncelleResponse::class;
 
     public $universiteid = "";
     public $kayityili = "";
@@ -14,6 +13,10 @@ class OgrenciEkleGuncelleRequest extends Request
     public $ogrencino = "";
     public $kimlikno = "";
     public $pasaportno = "";
+    /**
+     * @var string
+     * Uyruk tipi 1,2 veya 3 olmalıdır
+     */
     public $uyruk = "";
     public $uyrugu = "";
     public $aktifdonemno = "";

@@ -18,5 +18,14 @@
     "php": ">=7.0.0",
     "guzzlehttp/guzzle": "^6.5",
     "ext-json": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5",
+    "monolog/monolog": "^1.27"
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests"
+    ]
   }
 }
