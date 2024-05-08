@@ -7,11 +7,13 @@ class Response
     private $Success;
     private $Message;
 
+    private $data;
+
     public function __construct($data)
     {
-        $data = json_decode($data);
-        $this->Success = $data->Success;
-        $this->Message = $data->Message;
+        $this->data = json_decode($data);
+        $this->Success = $this->data->Success;
+        $this->Message = $this->data->Message;
     }
 
     public function isSuccessful()
@@ -22,6 +24,11 @@ class Response
     public function message()
     {
         return $this->Message;
+    }
+
+    public function data()
+    {
+        return $this->data->Data;
     }
 
 

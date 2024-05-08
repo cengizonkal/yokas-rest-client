@@ -3,33 +3,42 @@
 namespace YOKAS;
 
 use Conkal\YOKAS\Client;
-use Conkal\YOKAS\OgrenciEkleGuncelleRequest;
+use Conkal\YOKAS\Requests\OgrenciEkleGuncelleRequest;
+use Conkal\YOKAS\Requests\UniversiteBirimlerRequest;
 use TestCase;
 
 
 class ClientTest extends TestCase
 {
 
+    public $client;
+    public $id;
 
-    public function test_ogrenci_ekle()
+    public function setUp()
     {
         $host = getenv('YOKAS_REST_URL');
         $username = getenv('YOKAS_USERNAME');
         $password = getenv('YOKAS_PASSWORD');
-        $id = getenv('YOKAS_ID');
+        $this->id = getenv('YOKAS_ID');
 
-        $client = new Client($host, $username, $password, $id);
+        $this->client = new Client($host, $username, $password, $this->id);
+    }
+
+
+    public function test_ogrenci_ekle()
+    {
+
         $request = new OgrenciEkleGuncelleRequest();
-        $request->universiteid= $id;
+        $request->universiteid= $this->id;
         $request->kayityili = "2023-24";
-        $request->kayitdonemi = "2";
+        $request->kayitdonemi = "3";
         $request->ogrencino = "22990000";
         $request->kimlikno = "215045";
         $request->pasaportno = "215045";
         $request->uyruk = "1";
         $request->uyrugu = "XCT";
         $request->aktifdonemno = "1";
-        $request->anneadi = "Anne";
+        $request->anneadi = "Anneciğim";
         $request->ayrilmanedeni = "";
         $request->ayrilmatarihi = "";
         $request->babaadi = "Baba";
@@ -41,7 +50,7 @@ class ClientTest extends TestCase
         $request->diplomano = "";
         $request->diplomanot = "3,67";
         $request->diplomatur = "";
-        $request->dogumtarihi = "28.09.1999";
+        $request->dogumtarihi = "1999";
         $request->dogumyeri = "Lefkoşa";
         $request->genelnotortalama = "";
         $request->girispuani = "0";
@@ -61,11 +70,21 @@ class ClientTest extends TestCase
         $request->email = "22990000@ciu.edu.tr";
 
 
-        $response = $client->execute($request);
+        $response = $this->client->execute($request);
 
         $this->assertTrue($response->isSuccessful());
 
 
+    }
+
+    public function test_it_should_list_university_units()
+    {
+        $request = new UniversiteBirimlerRequest();
+        $request->sUniversiteId = $this->id;
+        $response = $this->client->execute($request);
+        $this->assertTrue($response->isSuccessful());
+        //assertNotEmpty($response->data());
+        $this->assertNotEmpty($response->data());
 
     }
 }

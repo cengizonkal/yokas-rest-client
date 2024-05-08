@@ -2,6 +2,12 @@
 
 namespace Conkal\YOKAS;
 
+use Conkal\YOKAS\Exceptions\AktifStatuKoduTanimliDegil;
+use Conkal\YOKAS\Exceptions\BirimSistemeKayitliDegil;
+use Conkal\YOKAS\Exceptions\OgrenciEklemedeHataOlustu;
+use Conkal\YOKAS\Requests\Request;
+use GuzzleHttp\Exception\GuzzleException;
+
 class Client
 {
 
@@ -22,13 +28,32 @@ class Client
             'auth' => [$this->id, $this->password]
         ]);
     }
-    public function execute(Request $request)
+
+    /**
+     * @throws OgrenciEklemedeHataOlustu
+     * @throws GuzzleException
+     * @throws BirimSistemeKayitliDegil
+     * @throws AktifStatuKoduTanimliDegil
+     */
+    public function execute(Request $request): Response
     {
-        $data = $this->client->request($request->method(), $request->uri(), [
-            'json' => $request->data()
-        ]);
-        ExceptionFactory::check($data->getBody());
-        return new Response($data->getBody());
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+        ];
+
+        if ($request->method() == "GET") {
+            $options['query'] = $request->data();
+        } else {
+            $options['json'] = $request->data();
+        }
+
+        $response = $this->client->request($request->method(), $request->uri(), $options);
+
+        ExceptionFactory::check($response->getBody());
+        return new Response($response->getBody());
     }
 
 

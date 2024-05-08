@@ -1,6 +1,6 @@
 <?php
 
-namespace Conkal\YOKAS;
+namespace Conkal\YOKAS\Requests;
 
 class Request
 {
