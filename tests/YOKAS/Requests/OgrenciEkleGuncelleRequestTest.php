@@ -1,29 +1,13 @@
 <?php
 
-namespace YOKAS;
+namespace YOKAS\Requests;
 
-use Conkal\YOKAS\Client;
 use Conkal\YOKAS\Requests\OgrenciEkleGuncelleRequest;
-use Conkal\YOKAS\Requests\UniversiteBirimlerRequest;
 use TestCase;
 
 
-class ClientTest extends TestCase
+class OgrenciEkleGuncelleRequestTest extends TestCase
 {
-
-    public $client;
-    public $id;
-
-    public function setUp()
-    {
-        $host = getenv('YOKAS_REST_URL');
-        $username = getenv('YOKAS_USERNAME');
-        $password = getenv('YOKAS_PASSWORD');
-        $this->id = getenv('YOKAS_ID');
-
-        $this->client = new Client($host, $username, $password, $this->id);
-    }
-
 
     public function test_ogrenci_ekle()
     {
@@ -74,17 +58,6 @@ class ClientTest extends TestCase
 
         $this->assertTrue($response->isSuccessful());
 
-
-    }
-
-    public function test_it_should_list_university_units()
-    {
-        $request = new UniversiteBirimlerRequest();
-        $request->sUniversiteId = $this->id;
-        $response = $this->client->execute($request);
-        $this->assertTrue($response->isSuccessful());
-        //assertNotEmpty($response->data());
-        $this->assertNotEmpty($response->data());
 
     }
 }
