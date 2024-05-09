@@ -11,9 +11,10 @@ class Response
 
     public function __construct($data)
     {
-        $this->data = json_decode($data);
-        $this->Success = $this->data->Success;
-        $this->Message = $this->data->Message;
+        $data = json_decode($data);
+        $this->Success = $data->Success;
+        $this->Message = $data->Message;
+
     }
 
     public function isSuccessful()
@@ -29,6 +30,12 @@ class Response
     public function data()
     {
         return $this->data->Data;
+    }
+
+    //magic method to get data
+    public function __get($name)
+    {
+        return $this->data->Data->$name;
     }
 
 

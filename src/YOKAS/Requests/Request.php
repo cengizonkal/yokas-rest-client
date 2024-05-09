@@ -2,7 +2,7 @@
 
 namespace Conkal\YOKAS\Requests;
 
-class Request
+abstract class Request
 {
 
     /**
