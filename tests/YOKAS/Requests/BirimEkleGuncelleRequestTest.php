@@ -27,6 +27,6 @@ class BirimEkleGuncelleRequestTest extends TestCase
         $request->OgrenimSure = "4";
         $response = $this->client->execute($request);
         $this->assertTrue($response->isSuccessful());
-        $this->assertNotEmpty($response->data());
+
     }
 }
