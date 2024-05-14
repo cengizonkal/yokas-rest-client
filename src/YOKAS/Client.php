@@ -24,9 +24,9 @@ class Client
         $this->password = $password;
         $this->id = $id;
         $this->client = new \GuzzleHttp\Client([
-            'base_uri' => $this->host,
-            'auth' => [$this->id, $this->password]
-        ]);
+                                                   'base_uri' => $this->host,
+                                                   'auth' => [$this->id, $this->password]
+                                               ]);
     }
 
     /**
@@ -47,7 +47,19 @@ class Client
         if ($request->method() == "GET") {
             $options['query'] = $request->data();
         } else {
-            $options['json'] = $request->data();
+            if ($request->hasFile()) {
+                $options['multipart'] = [
+                    [
+                        'name' => 'file',
+                        'contents' => fopen($request->file()->path(), 'r'),
+                        'filename' => $request->file()->name()
+                    ]
+                ];
+                $options['form_params'] = $request->data();
+
+            } else {
+                $options['json'] = $request->data();
+            }
         }
 
         $response = $this->client->request($request->method(), $request->uri(), $options);

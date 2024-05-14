@@ -2,6 +2,8 @@
 
 namespace Conkal\YOKAS\Requests;
 
+use Conkal\YOKAS\File;
+
 abstract class Request
 {
 
@@ -11,6 +13,19 @@ abstract class Request
     protected $response;
     protected $uri;
     protected $method;
+
+    private $file = null;
+
+    public function file()
+    {
+        return $this->file;
+    }
+
+    public function setFile(File $file)
+    {
+        $this->file = $file;
+    }
+
 
     public function response($data)
     {
@@ -47,6 +62,11 @@ abstract class Request
             }
         }
         return $array;
+    }
+
+    public function hasFile()
+    {
+        return $this->file != null;
     }
 
 
