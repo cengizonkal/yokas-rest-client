@@ -55,7 +55,7 @@ class Client
                         'filename' => $request->file()->name()
                     ]
                 ];
-                $options['form_params'] = $request->data();
+                $options['query'] = $request->data();
 
             } else {
                 $options['json'] = $request->data();

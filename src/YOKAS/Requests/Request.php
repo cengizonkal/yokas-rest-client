@@ -7,10 +7,7 @@ use Conkal\YOKAS\File;
 abstract class Request
 {
 
-    /**
-     * Class name of the response object
-     */
-    protected $response;
+
     protected $uri;
     protected $method;
 
@@ -21,16 +18,12 @@ abstract class Request
         return $this->file;
     }
 
-    public function setFile(File $file)
+    public function setFile($path,$name)
     {
-        $this->file = $file;
+        $this->file = new File($path,$name);
     }
 
 
-    public function response($data)
-    {
-        return new $this->response($data);
-    }
 
     public function uri()
     {
@@ -57,7 +50,7 @@ abstract class Request
     {
         $array = [];
         foreach ($this as $key => $value) {
-            if (!in_array($key, ['method', 'uri'])) {
+            if (!in_array($key, ['method', 'uri', 'file'])) {
                 $array[$key] = $value;
             }
         }

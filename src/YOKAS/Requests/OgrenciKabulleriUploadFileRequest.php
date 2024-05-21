@@ -11,7 +11,6 @@ class OgrenciKabulleriUploadFileRequest extends Request
     public $sBasvuruNo;
     public $sKimlikNo;
     public $sPasaportNo;
-    public $file;
 
 
 }

@@ -16,7 +16,7 @@ class OgrenciKabulleriUploadFileRequestTest extends TestCase
         $request->sBasvuruNo = 1;
         $request->sKimlikNo = '12345678901';
         $request->sPasaportNo = '12345678901';
-        $request->file = __DIR__ . '/../../files/test.pdf';
+        $request->setFile(__DIR__ . '/../../test.pdf','test.pdf');
         $response = $this->client->execute($request);
         $this->assertTrue($response->isSuccessful());
     }
