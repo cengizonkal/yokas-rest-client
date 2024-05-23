@@ -37,33 +37,9 @@ class Client
      */
     public function execute(Request $request): Response
     {
-        $options = [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
-        ];
 
-        if ($request->method() == "GET") {
-            $options['query'] = $request->data();
-        } else {
-            if ($request->hasFile()) {
-                $options['multipart'] = [
-                    [
-                        'name' => 'file',
-                        'contents' => fopen($request->file()->path(), 'r'),
-                        'filename' => $request->file()->name()
-                    ]
-                ];
-                $options['query'] = $request->data();
 
-            } else {
-                $options['json'] = $request->data();
-            }
-        }
-
-        $response = $this->client->request($request->method(), $request->uri(), $options);
-
+        $response = $this->client->request($request->method(), $request->uri(), $request->body());
         ExceptionFactory::check($response->getBody());
         return new Response($response->getBody());
     }

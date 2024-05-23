@@ -11,4 +11,11 @@ class OgrenciNoBilgiRequest extends Request
     public $SuniversiteId;
 
 
+    public function body(): array
+    {
+        return [
+            'headers' => $this->headers(),
+            'query' => $this->parameters()
+        ];
+    }
 }

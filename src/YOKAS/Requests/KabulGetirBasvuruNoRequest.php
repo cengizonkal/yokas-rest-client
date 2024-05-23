@@ -9,4 +9,14 @@ class KabulGetirBasvuruNoRequest extends Request
 
     public $SuniversiteId;
     public $SbasvuruNo;
+
+    public function body(): array
+    {
+
+        return [
+            'headers' => $this->headers(),
+            'query' => $this->parameters()
+        ];
+
+    }
 }

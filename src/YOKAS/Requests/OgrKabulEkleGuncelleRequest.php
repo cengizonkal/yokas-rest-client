@@ -23,4 +23,12 @@ class OgrKabulEkleGuncelleRequest extends Request
     public $ogrgelisdurum="0";
 
 
+    public function body(): array
+    {
+        return [
+            'headers' => $this->headers(),
+            'json' => $this->parameters()
+        ];
+
+    }
 }

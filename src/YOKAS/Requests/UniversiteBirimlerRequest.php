@@ -9,4 +9,11 @@ class UniversiteBirimlerRequest extends Request
     public $sUniversiteId = "";
 
 
+    public function body(): array
+    {
+        return [
+            'headers' => $this->headers(),
+            'query' => $this->parameters()
+        ];
+    }
 }

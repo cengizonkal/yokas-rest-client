@@ -13,4 +13,18 @@ class OgrenciKabulleriUploadFileRequest extends Request
     public $sPasaportNo;
 
 
+    public function body(): array
+    {
+        return [
+            'headers' => $this->headers(),
+            'multipart' => [
+                [
+                    'name' => 'file',
+                    'contents' => file_get_contents($this->file()->path()),
+                    'filename' => $this->file()->name()
+                ]
+            ],
+            'query' => $this->parameters()
+        ];
+    }
 }

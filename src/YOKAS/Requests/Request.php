@@ -13,16 +13,22 @@ abstract class Request
 
     private $file = null;
 
+    protected $headers = [
+        'headers' => [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ],
+    ];
+
     public function file()
     {
         return $this->file;
     }
 
-    public function setFile($path,$name)
+    public function setFile($path, $name)
     {
-        $this->file = new File($path,$name);
+        $this->file = new File($path, $name);
     }
-
 
 
     public function uri()
@@ -38,19 +44,22 @@ abstract class Request
 
     public function data()
     {
-        return $this->toArray();
+        return $this->parameters();
     }
+
+    public abstract function body(): array;
+
 
     public function json()
     {
         return json_encode($this->data());
     }
 
-    protected function toArray()
+    protected function parameters(): array
     {
         $array = [];
         foreach ($this as $key => $value) {
-            if (!in_array($key, ['method', 'uri', 'file'])) {
+            if (!in_array($key, ['method', 'uri', 'file', 'body'])) {
                 $array[$key] = $value;
             }
         }
@@ -60,6 +69,11 @@ abstract class Request
     public function hasFile()
     {
         return $this->file != null;
+    }
+
+    public function headers()
+    {
+        return $this->headers;
     }
 
 

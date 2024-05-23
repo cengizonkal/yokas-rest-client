@@ -6,7 +6,7 @@ class BirimEkleGuncelleRequest extends Request
 {
     protected $uri = 'api/Ogrenci/BirimEkleGuncelle';
     protected $method = "POST";
-   
+
     public $UniversiteId = "";
     public $BirimId = "";
     public $BirimAdi = "";
@@ -19,6 +19,14 @@ class BirimEkleGuncelleRequest extends Request
     public $OsymKod = "";
     public $AcilisTarihi = "";
     public $OgrenimSure = "4";
+
+    public function body(): array
+    {
+        return [
+            'headers' => $this->headers(),
+            'json' => $this->parameters()
+        ];
+    }
 
 
 }

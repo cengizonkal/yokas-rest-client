@@ -9,4 +9,11 @@ class OgrKabulListeRequest extends Request
     protected $method = 'GET';
 
 
+    public function body(): array
+    {
+        return [
+            'headers' => $this->headers(),
+            'query' => $this->parameters()
+        ];
+    }
 }

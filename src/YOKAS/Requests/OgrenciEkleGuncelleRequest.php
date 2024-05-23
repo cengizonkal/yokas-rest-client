@@ -59,4 +59,13 @@ class OgrenciEkleGuncelleRequest extends Request
     public $telefonno = "";
     public $email = "";
 
+    public function body(): array
+    {
+        return [
+            'headers' => $this->headers(),
+            'json' => $this->parameters()
+        ];
+    }
+
+
 }
