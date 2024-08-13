@@ -1,7 +1,5 @@
 # YOKAS REST Client
-
-This is a simple REST client for the YOKAS project. It is written in Python and uses the requests library to make HTTP
-requests.
+This is a PHP client for the YOKAS REST API.
 
 ## Requirements
 
