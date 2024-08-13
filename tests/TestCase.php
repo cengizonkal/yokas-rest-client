@@ -9,7 +9,7 @@ class TestCase extends PHPUnit\Framework\TestCase
     public $client;
     public $id;
 
-    public function setUp()
+    public function setUp(): void
     {
         $host = getenv('YOKAS_REST_URL');
         $username = getenv('YOKAS_USERNAME');

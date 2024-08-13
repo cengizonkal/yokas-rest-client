@@ -16,7 +16,9 @@
   ],
   "require": {
     "php": ">=7.0.0",
-    "ext-json": "*"
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^7.9"
+
   },
   "require-dev": {
     "phpunit/phpunit": "*"
