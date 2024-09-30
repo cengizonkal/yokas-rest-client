@@ -1,31 +1,31 @@
 <?php
 
 namespace Conkal\YOKAS;
+use ArrayAccess;
 
 class Response
 {
-    private $Success;
-    private $Message;
-
-    private $data;
+    public $success;
+    public $message;
+    public $data;
 
     public function __construct($data)
     {
         $data = json_decode($data);
-        $this->Success = $data->Success;
-        $this->Message = $data->Message;
+        $this->success = $data->Success;
+        $this->message = $data->Message;
         $this->data = $data;
 
     }
 
     public function isSuccessful()
     {
-        return $this->Success;
+        return $this->success;
     }
 
     public function message()
     {
-        return $this->Message;
+        return $this->message;
     }
 
     public function data()
@@ -33,18 +33,14 @@ class Response
         return $this->data->Data;
     }
 
-    //magic method to get data
     public function __get($name)
     {
-        //check if the data is an object
         if (is_object($this->data->Data)) {
-            //check if the property exists
             if (property_exists($this->data->Data, $name)) {
                 return $this->data->Data->$name;
             }
         }
         return null;
-
     }
 
 
